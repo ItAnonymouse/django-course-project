@@ -1,5 +1,5 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
-def login_view(request):
-    return HttpResponse("Login Page")
+def home(request):
+    return HttpResponse("Welcome to SportsHub!")

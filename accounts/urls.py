@@ -1,9 +1,6 @@
-# accounts/urls.py
-
 from django.urls import path
-from . import views
+from accounts import views  
 
 urlpatterns = [
-    path('login/', views.login_view, name='login'),
-    # Add other URL patterns as necessary
+    path('login/', views.login_view, name='login'),  # ✅ Ensure login_view exists
 ]
