@@ -1,10 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SportsHub</title>
 </head>
 <body>
-    <h1>Welcome to SportsHub</h1>
-    <p><a href="{% url 'login' %}">Login Here</a></p>
+    <h1>{{ message }}</h1> <!-- Display the welcome message -->
+
+    {% if events %}
+        <h2>Scheduled Football Events</h2>
+        <ul>
+        {% for event in events %}
+            <li>
+                <strong>Tournament:</strong> {{ event.tournament.name }}<br>
+                <strong>Date:</strong> {{ event.date }}<br>
+                <strong>Teams:</strong> {{ event.teams }}
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No events found.</p>
+    {% endif %}
 </body>
 </html>

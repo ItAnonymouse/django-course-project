@@ -77,3 +77,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'accounts.CustomUser'
+
+# settings.py
+API_BASE_URL = "https://api.sportsdata.io/v4/soccer/scores/json/Livescores"
+API_KEY = "your_api_key_here"
