@@ -18,6 +18,9 @@ INSTALLED_APPS = [
     'accounts', 
 ]
 
+# Redirect after login/logout
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -34,7 +37,7 @@ ROOT_URLCONF = 'sportshub.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],  # Add templates directory
+        'DIRS': [BASE_DIR / 'templates'],  # Add this to load custom templates
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

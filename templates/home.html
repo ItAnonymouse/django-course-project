@@ -1,26 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SportsHub</title>
 </head>
 <body>
-    <h1>{{ message }}</h1> <!-- Display the welcome message -->
+    <h1>Welcome to SportsHub!</h1>
 
-    {% if events %}
-        <h2>Scheduled Football Events</h2>
-        <ul>
-        {% for event in events %}
-            <li>
-                <strong>Tournament:</strong> {{ event.tournament.name }}<br>
-                <strong>Date:</strong> {{ event.date }}<br>
-                <strong>Teams:</strong> {{ event.teams }}
-            </li>
-        {% endfor %}
-        </ul>
-    {% else %}
-        <p>No events found.</p>
-    {% endif %}
+    <!-- Login/Signup buttons -->
+    <a href="{% url 'login' %}">Login</a> |
+    <a href="{% url 'signup' %}">Signup</a>
+
+    <h2>Scheduled Football Events</h2>
+    <div id="scores">Loading...</div>
+
+    <script>
+        fetch("/api/football/scheduled-events/2022-02-11/")
+            .then(response => response.json())
+            .then(data => {
+                const container = document.getElementById("scores");
+                if (data.events) {
+                    container.innerHTML = "<ul>" + data.events.map(event => `
+                        <li>
+                            ${event.tournament.name} - ${event.tournament.category.name}
+                        </li>
+                    `).join("") + "</ul>";
+                } else {
+                    container.innerHTML = "No events found.";
+                }
+            })
+            .catch(error => {
+                document.getElementById("scores").innerText = "Error loading scores.";
+                console.error(error);
+            });
+    </script>
 </body>
 </html>
